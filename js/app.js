@@ -1,95 +1,8 @@
-/** The model for app. These are the coworking spaces listings that will
-be shown to the user.*/
-
-var initialSpaces = [
-  {
-    "name": "Milkshake and Co.",
-    "location": {"lat": 30.7408502, "lng": 76.7972599}
-  },
-  {
-    "name": "Uncle Jack's",
-    "location": {"lat": 30.7408896, "lng": 76.7972148}
-  },
-  {
-    "name": "Rustic Door",
-    "location": {"lat": 30.7542476, "lng": 76.7877952}
-  },
-  {
-    "name": "Burgrill",
-    "location": {"lat": 30.7408270, "lng": 76.7978909}
-  },
-  {
-    "name": "Get Desserted",
-    "location": {"lat": 30.7407806, "lng": 76.7974402}
-  },
-  {
-    "name": "Bon  Nourriture",
-    "location": {"lat": 30.7475505, "lng": 76.7932236}
-  },
-  {
-    "name": "La Pino'z Pizza",
-    "location": {"lat": 30.7478997, "lng": 76.7929333}
-  },
-  {
-    "name": "The Willow Cafe",
-    "location": {"lat": 30.7587387, "lng": 76.7834682}
-  },
-  {
-    "name": "AJA Fresh, Grilled & Healthy",
-    "location": {"lat": 30.7592908, "lng": 76.7828372}
-  },
-  {
-    "name": "Super Donuts",
-    "location": {"lat": 30.7409384, "lng": 76.7972599}
-  },
-  {
-    "name": "Casa Bella Vista Pizzeria",
-    "location": {"lat": 30.7547301, "lng": 76.7873445}
-  },
-  {
-    "name": "PiFi Pizza Zone",
-    "location": {"lat": 30.7409454, "lng": 76.7977557}
-  },
-  {
-    "name": "Backpackers Cafe",
-    "location": {"lat": 30.7474867, "lng": 76.7932037}
-  },
-  {
-    "name": "Nik Baker's",
-    "location": {"lat": 30.7478881, "lng": 76.7932488}
-  },
-  {
-    "name": "Gusto Kitchen & Kaffe",
-    "location": {"lat": 30.7328298, "lng": 76.8032989}
-  },
-  {
-    "name": "Chapter Seven",
-    "location": {"lat": 30.7327602, "lng": 76.8034792}
-  },
-  {
-    "name": "Monica's Puddings & Pies",
-    "location": {"lat": 30.7409569, "lng": 76.7974402}
-  },
-  {
-    "name": "NABOBS Cafe and Pub",
-    "location": {"lat": 30.7470923, "lng": 76.7936544}
-  },
-  {
-    "name": "Fraiche",
-    "location": {"lat": 30.7408896, "lng": 76.7972148}
-  },
-  {
-    "name": "Dumpling Hood",
-    "location": {"lat": 30.7478997, "lng": 76.7929333}
-  }
-];
-
-
-// Create global variables to use in google maps
 var map,
   infowindow,
   bounds;
-
+// initialize zomato function
+Zomato.init({"key" :"a407a643533db8f33505efd14ba99642"});
 //googleSuccess() is called when page is loaded
 function googleSuccess() {
   "use strict";
@@ -190,13 +103,18 @@ function googleSuccess() {
   var Space = function (data, map) {
     this.name = data.name;
     this.location = data.location;
+    this.res_id = data.res_id;
+    this.resURL = "";
+    this.cost = "";
+    this.cuisine = "";
     this.photoUrl = "https://www.zomato.com/widgets/foodie_widget_img.php?widget_type=2&lat=" + this.location.lat + "&lon=" + this.location.lng;
   };
 
+
   // Get contect infowindows
   function getContent(space) {
-    var contentString = "<h3>" + space.name +
-      "</h3><br><div style='width:200px;min-height:120px'><img width=65% src=" + '"' +
+    var contentString = "<a href="+ space.resURL +"><h3>" + space.name +
+      "</h3></a><br>"+ space.cuisine +"<p>Average cost for two: " + space.cost +"</p><br><div style='width:200px;min-height:120px'><img width=65% src=" + '"' +
       space.photoUrl + '"></div>';
       return contentString;
 
@@ -250,6 +168,21 @@ function googleSuccess() {
         toggleBounce(marker);
     });
   });
+
+    //Zomato API request
+    self.getResturantData=ko.computed(function(){
+      self.spaceList().forEach(function(space){
+
+        Zomato.restaurant(space.res_id, function(restaurant){
+          space.cost = restaurant.average_cost_for_two;
+          space.resURL = restaurant.url;
+          space.cuisine = restaurant.cuisines;
+        }, function(error){
+          console.error("There was an error with AJAX request");
+        });
+
+      });
+    });
 
 
     // Creating click for the list item
