@@ -68,7 +68,7 @@ function googleSuccess() {
     var contentString = "<a href="+ space.resURL +"><h3>" + space.name +
       "</h3></a><br>"+ space.cuisine +"<p>Average cost for two: " + space.cost +"</p><br><div style='width:200px;min-height:120px'><img width=65% src=" + '"' +
       space.photoUrl + '"></div>';
-    var errorstring = "There was an error with AJAX request. Please try again later"
+    var errorstring = "There was an error with AJAX request. Please try again later";
 
       if (space.success) {
         return contentString;
