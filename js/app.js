@@ -25,56 +25,7 @@ function googleSuccess() {
       "lng": 76.7936489
     },
     zoom: 14,
-    styles: [
-    {
-      "featureType": "landscape",
-      "stylers": [
-        { "hue": "#FFBB00"},
-        {"saturation": 43.400000000000006},
-        {"lightness": 37.599999999999994},
-        {"gamma": 1}
-      ]
-    },{
-      "featureType": "road.highway",
-      "stylers": [
-        {"hue": "#FFC200"},
-        {"saturation": -61.8},
-        {"lightness": 45.599999999999994},
-        {"gamma": 1}
-      ]
-    },{
-      "featureType": "road.arterial",
-      "stylers": [
-        {"hue": "#FF0300"},
-        {"saturation": -100},
-        {"lightness": 51.19999999999999},
-        {"gamma": 1}
-      ]
-    },{
-      "featureType": "road.local",
-      "stylers": [
-        {"hue": "#FF0300"},
-        {"saturation": -100},
-        {"lightness": 52},
-        {"gamma": 1}
-      ]
-    },{
-      "featureType": "water",
-      "stylers": [
-        {"hue": "#0078FF"},
-        {"saturation": -13.200000000000003},
-        {"lightness": 2.4000000000000057},
-        {"gamma": 1}
-      ]
-    },{
-      "featureType": "poi",
-      "stylers": [
-        {"hue": "#00FF6A"},
-        {"saturation": -1.0989010989011234},
-        {"lightness": 11.200000000000017},
-        {"gamma": 1}
-      ]
-    }],
+    styles: mapstyles,
     mapTypeId: google.maps.MapTypeId.ROADMAP,
     mapTypeControl: false,
     mapTypeControlOptions: {
@@ -107,6 +58,7 @@ function googleSuccess() {
     this.resURL = "";
     this.cost = "";
     this.cuisine = "";
+    this.success = "";
     this.photoUrl = "https://www.zomato.com/widgets/foodie_widget_img.php?widget_type=2&lat=" + this.location.lat + "&lon=" + this.location.lng;
   };
 
@@ -116,7 +68,14 @@ function googleSuccess() {
     var contentString = "<a href="+ space.resURL +"><h3>" + space.name +
       "</h3></a><br>"+ space.cuisine +"<p>Average cost for two: " + space.cost +"</p><br><div style='width:200px;min-height:120px'><img width=65% src=" + '"' +
       space.photoUrl + '"></div>';
-      return contentString;
+    var errorstring = "There was an error with AJAX request. Please try again later"
+
+      if (space.success) {
+        return contentString;
+      } else {
+        return errorstring;
+      }
+
 
   }
 
@@ -177,7 +136,9 @@ function googleSuccess() {
           space.cost = restaurant.average_cost_for_two;
           space.resURL = restaurant.url;
           space.cuisine = restaurant.cuisines;
+          space.success = true;
         }, function(error){
+          space.success = false;
           console.error("There was an error with AJAX request");
         });
 
