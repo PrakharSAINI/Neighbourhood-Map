@@ -1,0 +1,109 @@
+/* Data for Map, gathered from Zomato.com */
+
+var initialSpaces = [
+  {
+    "name": "Milkshake and Co.",
+    "location": {"lat": 30.7408502, "lng": 76.7972599},
+    "res_id": 123067
+  },
+  {
+    "name": "Uncle Jack's",
+    "location": {"lat": 30.7408896, "lng": 76.7972148},
+    "res_id": 122830
+  },
+  {
+    "name": "Rustic Door",
+    "location": {"lat": 30.7542476, "lng": 76.7877952},
+    "res_id": 121858
+  },
+  {
+    "name": "Burgrill",
+    "location": {"lat": 30.7408270, "lng": 76.7978909},
+    "res_id": 122940
+  },
+  {
+    "name": "Get Desserted",
+    "location": {"lat": 30.7407806, "lng": 76.7974402},
+    "res_id": 122035
+  },
+  {
+    "name": "Bon  Nourriture",
+    "location": {"lat": 30.7475505, "lng": 76.7932236},
+    "res_id": 122298
+  },
+  {
+    "name": "La Pino'z Pizza",
+    "location": {"lat": 30.7478997, "lng": 76.7929333},
+    "res_id": 120228
+  },
+  {
+    "name": "The Willow Cafe",
+    "location": {"lat": 30.7587387, "lng": 76.7834682},
+    "res_id": 120316
+  },
+  {
+    "name": "AJA Fresh, Grilled & Healthy",
+    "location": {"lat": 30.7592908, "lng": 76.7828372},
+    "res_id": 122032
+  },
+  {
+    "name": "Super Donuts",
+    "location": {"lat": 30.7409384, "lng": 76.7972599},
+    "res_id": 121073
+  },
+  {
+    "name": "Casa Bella Vista Pizzeria",
+    "location": {"lat": 30.7547301, "lng": 76.7873445},
+    "res_id": 121839
+  },
+  {
+    "name": "PiFi Pizza Zone",
+    "location": {"lat": 30.7409454, "lng": 76.7977557},
+    "res_id": 122823
+  },
+  {
+    "name": "Backpackers Cafe",
+    "location": {"lat": 30.7474867, "lng": 76.7932037},
+    "res_id": 120010
+  },
+  {
+    "name": "Nik Baker's",
+    "location": {"lat": 30.7478881, "lng": 76.7932488},
+    "res_id": 120202
+  },
+  {
+    "name": "Gusto Kitchen & Kaffe",
+    "location": {"lat": 30.7328298, "lng": 76.8032989},
+    "res_id": 121765
+  },
+  {
+    "name": "Chapter Seven",
+    "location": {"lat": 30.7327602, "lng": 76.8034792},
+    "res_id": 122598
+  },
+  {
+    "name": "Monica's Puddings & Pies",
+    "location": {"lat": 30.7409569, "lng": 76.7974402},
+    "res_id": 120682
+  },
+  {
+    "name": "NABOBS Cafe and Pub",
+    "location": {"lat": 30.7470923, "lng": 76.7936544},
+    "res_id": 122261
+  },
+  {
+    "name": "Fraiche",
+    "location": {"lat": 30.7408896, "lng": 76.7972148},
+    "res_id": 121699
+  },
+  {
+    "name": "Dumpling Hood",
+    "location": {"lat": 30.7478997, "lng": 76.7929333},
+    "res_id": 122387
+  },
+  {
+    "name": "Boston Bites",
+    "location": {"lat": 30.7598384, "lng": 76.7830175},
+    "res_id": 121700
+  }
+];
