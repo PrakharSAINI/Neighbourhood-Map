@@ -1,5 +1,5 @@
 var zheader,version,url;
-var u = "https://developers.zomato.com/api/"
+var u = "https://developers.zomato.com/api/";
 var Zomato = {
   init:function (opts) {
     if (opts.key!=null) {
@@ -7,12 +7,12 @@ var Zomato = {
         Accept : "text/plain; charset=utf-8",
         "Content-Type": "text/plain; charset=utf-8",
         "X-Zomato-API-Key":opts.key
-      }
+      };
     } else {
       console.error("Enter the key");
-    };
+    }
     version = opts.version||"v2.1";
-    url = u + version
+    url = u + version;
   },
 
   restaurant:function (resid,scb,ecb) {
@@ -26,9 +26,9 @@ var Zomato = {
           scb(response);
         },
         error:function (res) {
-          ecb(res)
+          ecb(res);
         }
       });
     }
   }
-}
+};
